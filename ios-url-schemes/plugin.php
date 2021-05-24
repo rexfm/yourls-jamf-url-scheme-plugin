@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: iOS URL Schemes
-Plugin URI: https://github.com/suculent/yourls-ios-url-schemes-plugin
-Description: Support for itms-services URL scheme for linking to iOS Enterprise App Installation Manifest
-Version: 1.3.1
-Author: Suculent
-Author URI: http://www.github.com/suculent/
+Plugin Name: JAMF URL Scheme
+Plugin URI: https://github.com/rexfm/yourls-jamf-url-scheme-plugin
+Description: Support for jamfselfservice URL scheme for linking to iOS Enterprise App Installation Manifest
+Version: 1.0.0
+Author: RexFM (Original by Suculent, thanks!)
+Author URI: http://www.github.com/rexfm/
 */
 
 // No direct call
@@ -16,7 +16,7 @@ if( !defined( 'YOURLS_ABSPATH' ) ) die();
  * This plugin hooks as a is_allowed_protocol filter. 
  */
 
-yourls_add_filter( 'is_allowed_protocol', 'suculent_itms_protocols' );
+yourls_add_filter( 'is_allowed_protocol', 'rexfm_jamf_protocols' );
 
 /* Filter implementation
  * 
@@ -24,9 +24,9 @@ yourls_add_filter( 'is_allowed_protocol', 'suculent_itms_protocols' );
  * $url contains (e.g. starts with) supported protocol string. Returns true for supported protocols.
  */
 
-function suculent_itms_protocols( $args, $url ) {
+function rexfm_jamf_protocols( $args, $url ) {
 	/* List of protocols added by this plugin */
-	$protocols = array( 'itms-services://', 'itms-apps://');
+	$protocols = array( 'jamfselfservice://' );
 	
 	/* Walk through the list and check if URL starts with one of known protocols. */
 	foreach ( $protocols as $protocol ) {	
